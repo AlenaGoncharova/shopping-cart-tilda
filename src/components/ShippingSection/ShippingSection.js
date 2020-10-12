@@ -1,6 +1,16 @@
 const ShippingSection = {
   shippingData: {},
 
+  generatePreviewData() {
+    const { method, address } = this.shippingData;
+    return (
+      `
+        <p>${method ? method : ''}</p>
+        <p>${address ? address : ''}</p>
+      `
+    );
+  },
+
   afterRender() {
     const form = document.getElementById('shipping-form');
     form.addEventListener('change', ({ target }) => {

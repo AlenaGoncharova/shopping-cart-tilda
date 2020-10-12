@@ -1,6 +1,13 @@
 const PaymentSection = {
   paymentData: {},
 
+  generatePreviewData() {
+    const { method }= this.paymentData;
+    return (
+      `<p>${method ? method : ''}</p>`
+    );
+  },
+
   afterRender() {
     const form = document.getElementById('payment-form');
     form.addEventListener('change', ({ target }) => {

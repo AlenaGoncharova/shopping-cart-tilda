@@ -1,7 +1,7 @@
 const CustomerDataSection = {
   customerData: {},
 
-  createPreviewContent() {
+  generatePreviewData() {
     const { name, phone, email } = this.customerData;
     return (
       `
