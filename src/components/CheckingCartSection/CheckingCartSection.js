@@ -1,6 +1,10 @@
 import { getCartItems } from '../../localStorage';
 
 const CheckingCartSection = {
+  isValidData() {
+    return true;
+  },
+
   render: () => {
     const cartItems = getCartItems();
     let content = `

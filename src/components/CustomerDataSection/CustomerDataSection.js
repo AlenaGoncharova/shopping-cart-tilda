@@ -1,5 +1,9 @@
 const CustomerDataSection = {
-  customerData: {},
+  customerData: {
+    name: null,
+    phone: null,
+    email: null,
+  },
 
   generatePreviewData() {
     const { name, phone, email } = this.customerData;
@@ -10,6 +14,10 @@ const CustomerDataSection = {
         <p>${email ? email : ''}</p>
       `
     );
+  },
+
+  isValidData() {
+    return !Object.values(this.customerData).includes(null);
   },
 
   afterRender() {

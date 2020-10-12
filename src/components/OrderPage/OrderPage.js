@@ -60,10 +60,17 @@ const OrderPage = {
 
     btnNextSection.forEach((btn) => {
       btn.addEventListener('click', (event) => {
-        const activeSectionName = activeInfoSection.getAttribute('data-section');  
-        const nextStep = checkoutSteps.find(({ sectionName, isValid }) => !isValid && sectionName !== activeSectionName);
-        const newActiveSection = document.querySelector(`[data-section="${nextStep.sectionName}"]`);
-        changeActiveSection(newActiveSection);
+        const activeSectionName = activeInfoSection.getAttribute('data-section'); 
+        if (mappingSection[activeSectionName].isValidData()) {
+          const currentStep = checkoutSteps.find(({ sectionName }) => sectionName === activeSectionName);
+          currentStep.isValid = true;
+
+          const nextStep = checkoutSteps.find(({ sectionName, isValid }) => !isValid && sectionName !== activeSectionName);
+          if (nextStep) {
+            const newActiveSection = document.querySelector(`[data-section="${nextStep.sectionName}"]`);
+            changeActiveSection(newActiveSection);
+          }
+        }
 
         event.stopPropagation();
       });

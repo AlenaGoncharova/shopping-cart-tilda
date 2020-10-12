@@ -1,5 +1,8 @@
 const ShippingSection = {
-  shippingData: {},
+  shippingData: {
+    method: null,
+    address: null,
+  },
 
   generatePreviewData() {
     const { method, address } = this.shippingData;
@@ -9,6 +12,10 @@ const ShippingSection = {
         <p>${address ? address : ''}</p>
       `
     );
+  },
+
+  isValidData() {
+    return !Object.values(this.shippingData).includes(null);
   },
 
   afterRender() {

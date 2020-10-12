@@ -1,11 +1,17 @@
 const PaymentSection = {
-  paymentData: {},
+  paymentData: {
+    method: null,
+  },
 
   generatePreviewData() {
     const { method }= this.paymentData;
     return (
       `<p>${method ? method : ''}</p>`
     );
+  },
+
+  isValidData() {
+    return !Object.values(this.paymentData).includes(null);
   },
 
   afterRender() {
