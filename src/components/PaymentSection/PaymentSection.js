@@ -1,4 +1,17 @@
 const PaymentSection = {
+  paymentData: {},
+
+  afterRender() {
+    const form = document.getElementById('payment-form');
+    form.addEventListener('change', ({ target }) => {
+      const { name, checked } = target;
+      if (checked) {
+        const value = target.getAttribute('data-type');
+        this.paymentData[name] = value;
+      }
+    });
+  },
+
   render: () => {
     return `
       <div class="info-section-container" data-step="payment">
