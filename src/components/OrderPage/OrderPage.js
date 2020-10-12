@@ -15,21 +15,25 @@ const OrderPage = {
       customerData: CustomerDataSection,
       shipping: ShippingSection,
       payment: PaymentSection,
+    };
+
+    function changeActiveSection(newActiveSection) {
+      const sectionName = activeInfoSection.getAttribute('data-section');
+      const preview = activeInfoSection.querySelector('.info-section-preview');
+      if (preview) {
+        const previewContent = mappingSection[sectionName].generatePreviewData();
+        preview.innerHTML = previewContent;
+      }
+      activeInfoSection.classList.remove('active-info-section');
+
+      newActiveSection.classList.add('active-info-section');
+      activeInfoSection = newActiveSection;
     }
 
     infoSectionContainers.forEach((section) => { 
-      section.addEventListener('click', ({ target }) => { 
+      section.addEventListener('click', () => { 
         if (section !== activeInfoSection) {
-          const sectionName = activeInfoSection.getAttribute('data-section');
-          const preview = activeInfoSection.querySelector('.info-section-preview');
-          if (preview) {
-            const previewContent = mappingSection[sectionName].generatePreviewData();
-            preview.innerHTML = previewContent;
-          }
-          activeInfoSection.classList.remove('active-info-section');
-
-          section.classList.add('active-info-section');
-          activeInfoSection = section;
+          changeActiveSection(section);
         }
       });
     });
