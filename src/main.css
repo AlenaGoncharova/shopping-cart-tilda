@@ -1,0 +1,15 @@
+.info-section-content {
+  display: none;
+}
+
+.info-section-preview {
+  display: block;
+}
+
+.active-info-section .info-section-content  {
+  display: block;
+}
+
+.active-info-section .info-section-preview  {
+  display: none;
+}

@@ -61,6 +61,53 @@ function openCart(){
   }
  
   displayCartItems();
+
+  const orderDetails = {
+    customerData: {
+      name: null,
+      email: null,
+      phone: null,
+    },
+    delivery: {
+      method: null,
+      address: null,
+    },
+    payment: {
+      method: null,
+    }
+  };
+
+  let activeInfoSection = document.querySelector('.active-info-section');
+  const infoSectionContainers = document.querySelectorAll('.info-section-container');
+
+  const forms = document.querySelectorAll('form');
+  forms.forEach((form) => form.addEventListener('change', (event) => {
+    const container = form.closest('.info-section-container');
+    const step = container.getAttribute('data-step');
+
+    const { target } = event;
+    if (target.type !== 'radio') {
+      const { name, value } = target;
+      orderDetails[step][name] = value;
+    } else {
+      const { checked, name } = target;
+      if (checked) {
+        const value = target.getAttribute('data-type');
+        orderDetails[step][name] = value;
+      }
+    }
+  }));
+
+  infoSectionContainers.forEach((section) => { 
+    section.addEventListener('click', () => {
+      if (section !== activeInfoSection) {
+        activeInfoSection.classList.remove('active-info-section');
+
+        section.classList.add('active-info-section');
+        activeInfoSection = section;
+      }
+    });
+  });
 }
 
 openCart();
