@@ -4,7 +4,7 @@ const CheckingCartSection = {
   render: () => {
     const cartItems = getCartItems();
     let content = `
-      <div class="info-section-container active-info-section" data-step="checkingCart">
+      <div class="info-section-container active-info-section" data-section="checkingCart">
         <h3>Детали заказа</h3>
         <div class="info-section-content">
           Корзина

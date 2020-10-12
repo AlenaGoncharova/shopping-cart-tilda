@@ -21,7 +21,7 @@ const PaymentSection = {
 
   render: () => {
     return `
-      <div class="info-section-container" data-step="payment">
+      <div class="info-section-container" data-section="payment">
         <h3>Оплата</h3>
         <div class="info-section-preview">Способ оплаты не выбран</div>
         <div class="info-section-content">

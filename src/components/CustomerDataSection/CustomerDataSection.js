@@ -23,7 +23,7 @@ const CustomerDataSection = {
 
   render() {
     return `
-      <div class="info-section-container" data-step="customerData">
+      <div class="info-section-container" data-section="customerData">
         <h3>Данные покупателя</h3>
         <div class="info-section-preview">
           Введите данные покупателя

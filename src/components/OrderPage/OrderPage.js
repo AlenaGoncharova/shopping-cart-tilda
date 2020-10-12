@@ -20,10 +20,10 @@ const OrderPage = {
     infoSectionContainers.forEach((section) => { 
       section.addEventListener('click', ({ target }) => { 
         if (section !== activeInfoSection) {
-          const step = activeInfoSection.getAttribute('data-step');
+          const sectionName = activeInfoSection.getAttribute('data-section');
           const preview = activeInfoSection.querySelector('.info-section-preview');
           if (preview) {
-            const previewContent = mappingSection[step].generatePreviewData();
+            const previewContent = mappingSection[sectionName].generatePreviewData();
             preview.innerHTML = previewContent;
           }
           activeInfoSection.classList.remove('active-info-section');

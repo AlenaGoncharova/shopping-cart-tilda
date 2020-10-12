@@ -29,7 +29,7 @@ const ShippingSection = {
 
   render: () => {
     return `
-      <div class="info-section-container" data-step="shipping">
+      <div class="info-section-container" data-section="shipping">
         <h3>Доставка</h3>
         <div class="info-section-preview">Выберите способ доставки</div>
         <div class="info-section-content">
