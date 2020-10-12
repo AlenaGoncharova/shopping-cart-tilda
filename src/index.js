@@ -62,23 +62,56 @@ function openCart(){
  
   displayCartItems();
 
+  const templateСustomerData = ({ name, phone, email }) => {
+    return (
+      `
+        <p>${name ? name : ''}</p>
+        <p>${phone ? phone : ''}</p>
+        <p>${email ? email : ''}</p>
+      `
+    );
+  };
+
+  const templateDelivery = ({ method, address }) => {
+    return (
+      `
+        <p>${method ? method : ''}</p>
+        <p>${address ? address : ''}</p>
+      `
+    );
+  };
+
+  const templatePayment = ({ method }) => {
+    return (
+      `<p>${method ? method : ''}</p>`
+    );
+  };
+
   const orderDetails = {
     customerData: {
       name: null,
       email: null,
       phone: null,
+      template: templateСustomerData,
     },
     delivery: {
       method: null,
       address: null,
+      template: templateDelivery,
     },
     payment: {
       method: null,
+      template: templatePayment,
     }
   };
 
   let activeInfoSection = document.querySelector('.active-info-section');
   const infoSectionContainers = document.querySelectorAll('.info-section-container');
+
+  function createPreviewContent(step) {
+    let previewContent = orderDetails[step].template(orderDetails[step]);
+    return previewContent;
+  }
 
   const forms = document.querySelectorAll('form');
   forms.forEach((form) => form.addEventListener('change', (event) => {
@@ -101,6 +134,12 @@ function openCart(){
   infoSectionContainers.forEach((section) => { 
     section.addEventListener('click', () => {
       if (section !== activeInfoSection) {
+        const step = activeInfoSection.getAttribute('data-step');
+        const preview = activeInfoSection.querySelector('.info-section-preview');
+        if (preview) {
+          const previewContent = createPreviewContent(step);
+          preview.innerHTML = previewContent;
+        }
         activeInfoSection.classList.remove('active-info-section');
 
         section.classList.add('active-info-section');
