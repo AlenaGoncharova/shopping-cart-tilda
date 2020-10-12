@@ -58,7 +58,7 @@ const ShippingSection = {
                     <textarea class="form-control" id="input-address" name="address" placeholder="Адрес доставки" row="3"></textarea>
                 </div>
               </div>
-              <button type="submit" class="primary">Продолжить</button>
+              <button type="submit" class="btn-next-section">Продолжить</button>
             </form>
           </div>
         </div>

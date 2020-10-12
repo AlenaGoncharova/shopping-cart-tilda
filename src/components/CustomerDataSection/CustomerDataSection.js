@@ -45,7 +45,7 @@ const CustomerDataSection = {
                 <label for="input-phone" class="control-label">Телефон *</label>
                 <input type="text" class="form-control" id="input-phone" name="phone" placeholder="Телефон">
             </div>
-            <button type="submit" class="primary">Продолжить</button>
+            <button type="submit" class="btn-next-section">Продолжить</button>
           </form>
         </div>
       </div>

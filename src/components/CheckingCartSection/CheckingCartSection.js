@@ -34,7 +34,7 @@ const CheckingCartSection = {
       content = 'В корзине пусто!';
     }
     content += `
-          <button type="submit" class="primary">Продолжить</button>
+          <button type="submit" class="btn-next-section">Продолжить</button>
         </div>
       </div>
     </div>`

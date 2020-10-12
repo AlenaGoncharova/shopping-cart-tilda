@@ -28,6 +28,7 @@ const OrderPage = {
 
     const infoSectionContainers = document.querySelectorAll('.info-section-container');
     let activeInfoSection = document.querySelector('.active-info-section');
+    const btnNextSection = document.querySelectorAll('.btn-next-section');
 
     const mappingSection = {
       checkingCart: CheckingCartSection,
@@ -54,6 +55,17 @@ const OrderPage = {
         if (section !== activeInfoSection) {
           changeActiveSection(section);
         }
+      });
+    });
+
+    btnNextSection.forEach((btn) => {
+      btn.addEventListener('click', (event) => {
+        const activeSectionName = activeInfoSection.getAttribute('data-section');  
+        const nextStep = checkoutSteps.find(({ sectionName, isValid }) => !isValid && sectionName !== activeSectionName);
+        const newActiveSection = document.querySelector(`[data-section="${nextStep.sectionName}"]`);
+        changeActiveSection(newActiveSection);
+
+        event.stopPropagation();
       });
     });
 
