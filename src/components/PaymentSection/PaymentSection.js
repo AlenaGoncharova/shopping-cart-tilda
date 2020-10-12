@@ -10,6 +10,7 @@ const PaymentSection = {
 
   afterRender() {
     const form = document.getElementById('payment-form');
+
     form.addEventListener('change', ({ target }) => {
       const { name, checked } = target;
       if (checked) {
@@ -17,6 +18,8 @@ const PaymentSection = {
         this.paymentData[name] = value;
       }
     });
+
+    form.addEventListener('submit', (e) => e.preventDefault());
   },
 
   render: () => {
@@ -38,6 +41,7 @@ const PaymentSection = {
                     </div>
                 </div>
               </div>
+              <button type="submit" class="primary">Продолжить</button>
             </form>
           </div>
         </div>

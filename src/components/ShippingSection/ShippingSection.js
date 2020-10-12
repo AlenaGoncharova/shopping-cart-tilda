@@ -13,6 +13,7 @@ const ShippingSection = {
 
   afterRender() {
     const form = document.getElementById('shipping-form');
+
     form.addEventListener('change', ({ target }) => {
       if (target.type !== 'radio') {
         const { name, value } = target;
@@ -25,6 +26,8 @@ const ShippingSection = {
         }
       }
     });
+
+    form.addEventListener('submit', (e) => e.preventDefault());
   },
 
   render: () => {
@@ -55,6 +58,7 @@ const ShippingSection = {
                     <textarea class="form-control" id="input-address" name="address" placeholder="Адрес доставки" row="3"></textarea>
                 </div>
               </div>
+              <button type="submit" class="primary">Продолжить</button>
             </form>
           </div>
         </div>

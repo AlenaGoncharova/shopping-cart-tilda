@@ -14,11 +14,14 @@ const CustomerDataSection = {
 
   afterRender() {
     const form = document.getElementById('customer-data-form');
+
     form.addEventListener('change', (event) => {
       const { target } = event;
       const { name, value } = target;
       this.customerData[name] = value;
     });
+
+    form.addEventListener('submit', (e) => e.preventDefault());
   },
 
   render() {
@@ -42,6 +45,7 @@ const CustomerDataSection = {
                 <label for="input-phone" class="control-label">Телефон *</label>
                 <input type="text" class="form-control" id="input-phone" name="phone" placeholder="Телефон">
             </div>
+            <button type="submit" class="primary">Продолжить</button>
           </form>
         </div>
       </div>
