@@ -20,6 +20,10 @@ const OrderPage = {
         }
       });
     });
+
+    CustomerDataSection.afterRender();
+    ShippingSection.afterRender();
+    PaymentScreen.afterRender();
   },
 
   render: () => {
