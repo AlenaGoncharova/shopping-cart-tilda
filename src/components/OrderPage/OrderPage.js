@@ -8,9 +8,17 @@ import './order-page.css';
 const OrderPage = {
   afterRender: () => {
     const infoSectionContainers = document.querySelectorAll('.info-section-container');
+    let activeInfoSection = document.querySelector('.active-info-section');
 
     infoSectionContainers.forEach((section) => { 
-      section.addEventListener('click', () => { section.classList.toggle('active-info-section'); });
+      section.addEventListener('click', ({ target }) => { 
+        if (section !== activeInfoSection) {
+          activeInfoSection.classList.remove('active-info-section');
+
+          section.classList.add('active-info-section');
+          activeInfoSection = section;
+        }
+      });
     });
   },
 
