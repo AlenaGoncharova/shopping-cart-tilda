@@ -1,9 +1,5 @@
 const CustomerDataSection = {
-  customerData: {
-    name: null,
-    email: null,
-    phone: null,
-  },
+  customerData: {},
 
   createPreviewContent() {
     const { name, phone, email } = this.customerData;
@@ -17,7 +13,6 @@ const CustomerDataSection = {
   },
 
   afterRender() {
-    // const customerData = this.customerData;
     const form = document.getElementById('customer-data-form');
     form.addEventListener('change', (event) => {
       const { target } = event;
