@@ -1,4 +1,22 @@
 const ShippingSection = {
+  shippingData: {},
+
+  afterRender() {
+    const form = document.getElementById('shipping-form');
+    form.addEventListener('change', ({ target }) => {
+      if (target.type !== 'radio') {
+        const { name, value } = target;
+        this.shippingData[name] = value;
+      } else {
+        const { name, checked } = target;
+        if (checked) {
+          const value = target.getAttribute('data-type');
+          this.shippingData[name] = value;
+        }
+      }
+    });
+  },
+
   render: () => {
     return `
       <div class="info-section-container" data-step="shipping">
