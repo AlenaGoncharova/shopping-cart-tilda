@@ -2,6 +2,7 @@ import CheckingCartSection from '../CheckingCartSection';
 import CustomerDataSection from '../CustomerDataSection';
 import ShippingSection from '../ShippingSection';
 import PaymentSection from '../PaymentSection';
+import CheckoutOverview from '../CheckoutOverview';
 
 import './order-page.css';
 
@@ -86,8 +87,11 @@ const OrderPage = {
     content += CustomerDataSection.render();
     content += ShippingSection.render();
     content += PaymentSection.render();
-    const container = document.getElementById('main-container');
-    container.innerHTML = content;
+    const mainContainer = document.getElementById('main-container');
+    mainContainer.innerHTML = content;
+
+    const sidebarContainer = document.getElementById('sidebar-container');
+    sidebarContainer.innerHTML = CheckoutOverview.render(5000, 300);
   },
 }
 
