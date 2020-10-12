@@ -1,4 +1,4 @@
-import { getCartItems } from '../localStorage';
+import { getCartItems } from '../../localStorage';
 
 const CheckingCartSection = {
   render: () => {
