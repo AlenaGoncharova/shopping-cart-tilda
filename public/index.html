@@ -2,97 +2,9 @@
 <html lang="en">
   <head>
 		<meta charset="utf-8">
-		<link rel="stylesheet" href="main.css" />
-    <title>Sandbox</title>
+    <title>Tilda shopping cart</title>
   </head>
   <body>
-		<div class="info-section-container active-info-section" data-step="cart">
-			<h3>Смотреть детали заказа</h3>
-			<div class="info-section-content">
-				<div class="cart">Корзина</div>
-			</div>
-		</div>
-		
-		<div class="info-section-container" data-step="customerData">
-			<h3>Данные покупателя</h3>
-			<div class="info-section-preview">
-				Введите данные покупателя
-			</div>
-			<div class="info-section-content">
-				<form id="order-form" role="form">
-					<div class="form-group">
-							<label for="input-name" class="control-label">Ваше имя *</label>
-							<div>
-									<input type="text" class="form-control" id="input-name" name="name" placeholder="Ваше имя">
-							</div>
-					</div>
-					<div class="form-group">
-							<label for="input-email" class="control-label">Email *</label>
-							<div>
-									<input type="email" class="form-control" id="input-email" name="email" placeholder="Email">
-							</div>
-					</div>
-					<div class="form-group">
-							<label for="input-phone" class="control-label">Телефон</label>
-							<div class="col-sm-6">
-									<input type="text" class="form-control" id="input-phone" name="phone" placeholder="Телефон">
-							</div>
-					</div>
-				</form>
-			</div>
-		</div>
-
-		<div class="info-section-container" data-step="delivery">
-			<h3>Доставка</h3>
-			<div class="info-section-preview">Способ доставки не выбран</div>
-			<div class="info-section-content delivery">
-				<form id="delivery-form" role="form">
-					<div class="form-group">
-						<label class="control-label">Способ доставки</label>
-						<div>
-								<div class="radio">
-										<label><input type="radio" name="method" data-type="Самовывоз" data-summa="0">Самовывоз (бесплатно)</label>
-								</div>
-								<div class="radio">
-										<label><input type="radio" name="method" data-type="В пределах КАД" data-summa="200">В пределах МКАД (200 рублей)</label>
-								</div>
-								<div class="radio">
-										<label><input type="radio" name="method" data-type="Почта России" data-summa="300">Доставка почтой России (300 рублей)</label>
-								</div>
-								<br>
-								<div id="alert-delivery" class="alert alert-info"></div>
-						</div>
-					</div>
-					<div class="form-group">
-						<label for="input-address" class="control-label">Адрес доставки</label>
-						<div>
-								<textarea class="form-control" id="input-address" name="address" placeholder="Адрес доставки" row="3"></textarea>
-						</div>
-					</div>
-				</form>
-			</div>
-		</div>
-
-		<div class="info-section-container" data-step="payment">
-			<h3>Оплата</h3>
-			<div class="info-section-preview">Способ оплаты не выбран</div>
-			<div class="info-section-content">
-				<form id="payment-form" role="form">
-					<div class="form-group">
-						<label class="control-label">Способ оплаты</label>
-						<div>
-								<div class="radio">
-										<label><input type="radio" name="method" data-type="Наличными" data-summa="0">Наличными</label>
-								</div>
-								<div class="radio">
-										<label><input type="radio" name="method" data-type="Картой" data-summa="200">Картой</label>
-								</div>
-						</div>
-					</div>
-				</form>
-			</div>
-		</div>
-
-		<script src="index.js"></script>
+		<div id="main-container"></div>
   </body>
 </html>
