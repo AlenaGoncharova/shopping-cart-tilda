@@ -7,6 +7,25 @@ import './order-page.css';
 
 const OrderPage = {
   afterRender: () => {
+    const checkoutSteps = [
+      { 
+        sectionName: 'checkingCart',
+        isValid: true,
+      },
+      {
+        sectionName: 'customerData',
+        isvalid: false,
+      },
+      { 
+        sectionName: 'shipping',
+        isValid: false,
+      },
+      {
+        sectionName: 'payment',
+        isValid: false,
+      }
+    ];
+
     const infoSectionContainers = document.querySelectorAll('.info-section-container');
     let activeInfoSection = document.querySelector('.active-info-section');
 
