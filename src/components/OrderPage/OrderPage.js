@@ -83,6 +83,11 @@ const OrderPage = {
       sidebarContainer.innerHTML = CheckoutOverview.render(CheckingCartSection.calcOrderSum(), event.detail.cost);
     });
 
+    const cart = document.querySelector('[data-section="checkingCart"]');
+    cart.addEventListener("cart-items-changed", function(event) {
+      sidebarContainer.innerHTML = CheckoutOverview.render(event.detail.orderSum, ShippingSection.shippingData.cost);
+    });
+
     const forms = document.querySelectorAll('form');
     forms.forEach((form) => {
       form.addEventListener("data-is-valid", function(event) {
