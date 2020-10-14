@@ -2,6 +2,7 @@ const ShippingSection = {
   shippingData: {
     method: null,
     address: null,
+    cost: null,
     isValid: false,
   },
 
@@ -32,6 +33,7 @@ const ShippingSection = {
           const value = target.getAttribute('data-type');
           this.shippingData[name] = value;
           const cost = Number(target.getAttribute('data-summa'));
+          this.shippingData.cost = cost;
 
           form.dispatchEvent(new CustomEvent("shipping-method-changed", {
             bubbles: true,
