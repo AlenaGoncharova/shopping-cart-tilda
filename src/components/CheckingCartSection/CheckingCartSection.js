@@ -5,6 +5,11 @@ const CheckingCartSection = {
     return true;
   },
 
+  calcOrderSum() {
+    const cartItems = getCartItems();
+    return cartItems.reduce((sum, { price, count }) => sum += price * count, 0);
+  },
+
   render: () => {
     const cartItems = getCartItems();
     let content = `

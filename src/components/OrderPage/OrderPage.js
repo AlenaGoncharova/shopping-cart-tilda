@@ -91,7 +91,7 @@ const OrderPage = {
     mainContainer.innerHTML = content;
 
     const sidebarContainer = document.getElementById('sidebar-container');
-    sidebarContainer.innerHTML = CheckoutOverview.render(5000, 300);
+    sidebarContainer.innerHTML = CheckoutOverview.render(CheckingCartSection.calcOrderSum(), 300);
   },
 }
 
