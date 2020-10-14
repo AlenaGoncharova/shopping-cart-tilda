@@ -18,7 +18,7 @@ const CheckoutOverview = {
             </tr>
           </tbody>
         </table>
-        <button type="submit" disabled>Оформить заказ</button>
+        <button id="btn-checkout" type="submit" disabled>Оформить заказ</button>
       </div>
     `;
   },

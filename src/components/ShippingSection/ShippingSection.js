@@ -2,6 +2,7 @@ const ShippingSection = {
   shippingData: {
     method: null,
     address: null,
+    isValid: false,
   },
 
   generatePreviewData() {
@@ -37,6 +38,21 @@ const ShippingSection = {
             detail: { cost }
           }));
         }
+      }
+
+      if (this.shippingData.isValid !== this.isValidData()) {
+        let eventType;
+        if (this.isValidData()) {
+          eventType = 'data-is-valid' 
+        } else {
+          eventType = 'data-is-not-valid'
+        }
+        form.dispatchEvent(new CustomEvent(eventType, {
+          bubbles: true,
+          detail: { section: 'shipping' }
+        }));
+
+        this.shippingData.isValid = this.isValidData();
       }
     });
 

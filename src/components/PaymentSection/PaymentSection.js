@@ -1,6 +1,7 @@
 const PaymentSection = {
   paymentData: {
     method: null,
+    isValid: false,
   },
 
   generatePreviewData() {
@@ -22,6 +23,21 @@ const PaymentSection = {
       if (checked) {
         const value = target.getAttribute('data-type');
         this.paymentData[name] = value;
+      }
+
+      if (this.paymentData.isValid !== this.isValidData()) {
+        let eventType;
+        if (this.isValidData()) {
+          eventType = 'data-is-valid' 
+        } else {
+          eventType = 'data-is-not-valid'
+        }
+        form.dispatchEvent(new CustomEvent(eventType, {
+          bubbles: true,
+          detail: { section: 'payment' }
+        }));
+
+        this.paymentData.isValid = this.isValidData();
       }
     });
 

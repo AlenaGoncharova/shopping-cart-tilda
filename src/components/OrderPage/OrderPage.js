@@ -83,6 +83,28 @@ const OrderPage = {
       sidebarContainer.innerHTML = CheckoutOverview.render(CheckingCartSection.calcOrderSum(), event.detail.cost);
     });
 
+    const forms = document.querySelectorAll('form');
+    forms.forEach((form) => {
+      form.addEventListener("data-is-valid", function(event) {
+        const currentStep = checkoutSteps.find(({ sectionName }) => sectionName === event.detail.section);
+        currentStep.isValid = true;
+        if (!checkoutSteps.map(({isValid}) => isValid).includes(false)) {
+          const btn = document.getElementById('btn-checkout');
+          btn.removeAttribute('disabled');
+        }
+      });
+    });
+
+    forms.forEach((form) => {
+      form.addEventListener("data-is-not-valid", function(event) {
+        const currentStep = checkoutSteps.find(({ sectionName }) => sectionName === event.detail.section);
+        currentStep.isValid = false;
+        const btn = document.getElementById('btn-checkout');
+        btn.setAttribute('disabled', true);
+      });
+    });
+
+    CheckingCartSection.afterRender();
     CustomerDataSection.afterRender();
     ShippingSection.afterRender();
     PaymentSection.afterRender();

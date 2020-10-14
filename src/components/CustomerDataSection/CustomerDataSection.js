@@ -3,6 +3,7 @@ const CustomerDataSection = {
     name: null,
     phone: null,
     email: null,
+    isValid: false,
   },
 
   generatePreviewData() {
@@ -27,6 +28,21 @@ const CustomerDataSection = {
       const { target } = event;
       const { name, value } = target;
       this.customerData[name] = value;
+
+      if (this.customerData.isValid !== this.isValidData()) {
+        let eventType;
+        if (this.isValidData()) {
+          eventType = 'data-is-valid' 
+        } else {
+          eventType = 'data-is-not-valid'
+        }
+        form.dispatchEvent(new CustomEvent(eventType, {
+          bubbles: true,
+          detail: { section: 'customerData' }
+        }));
+
+        this.customerData.isValid = this.isValidData();
+      }
     });
 
     form.addEventListener('submit', (e) => e.preventDefault());
