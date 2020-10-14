@@ -77,6 +77,12 @@ const OrderPage = {
       });
     });
 
+    const shippingForm = document.querySelector('[data-section="shipping"]');
+    const sidebarContainer = document.getElementById('sidebar-container');
+    shippingForm.addEventListener("shipping-method-changed", function(event) {
+      sidebarContainer.innerHTML = CheckoutOverview.render(CheckingCartSection.calcOrderSum(), event.detail.cost);
+    });
+
     CustomerDataSection.afterRender();
     ShippingSection.afterRender();
     PaymentSection.afterRender();
@@ -91,7 +97,7 @@ const OrderPage = {
     mainContainer.innerHTML = content;
 
     const sidebarContainer = document.getElementById('sidebar-container');
-    sidebarContainer.innerHTML = CheckoutOverview.render(CheckingCartSection.calcOrderSum(), 300);
+    sidebarContainer.innerHTML = CheckoutOverview.render(CheckingCartSection.calcOrderSum(), 0);
   },
 }
 
