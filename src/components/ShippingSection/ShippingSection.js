@@ -30,6 +30,12 @@ const ShippingSection = {
         if (checked) {
           const value = target.getAttribute('data-type');
           this.shippingData[name] = value;
+          const cost = Number(target.getAttribute('data-summa'));
+
+          form.dispatchEvent(new CustomEvent("shipping-method-changed", {
+            bubbles: true,
+            detail: { cost }
+          }));
         }
       }
     });
