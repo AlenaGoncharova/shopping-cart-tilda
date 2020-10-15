@@ -64,7 +64,7 @@ const CheckingCartSection = {
 
     let content = `
       <div class="info-section-container active-info-section" data-section="checkingCart">
-        <h3 class="col-25">Детали заказа</h3>
+        <h3 class="section-header col-25">Детали заказа</h3>
         <div class="info-section-content col-75">
           <ul id="cart-items-list">
     `;

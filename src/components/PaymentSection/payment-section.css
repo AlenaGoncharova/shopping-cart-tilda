@@ -1,0 +1,8 @@
+#payment-form {
+  display: flex;
+  justify-content: space-between;
+}
+
+#payment-form input[type="submit"] {
+  flex: 0.8;
+}
