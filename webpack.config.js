@@ -3,6 +3,11 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 module.exports = {
   mode: 'development',
   devtool: 'source-map',
+  // resolve: {
+  //   alias: {
+  //     images: path.resolve(__dirname, 'src/assets/img/'),
+  //   },
+  // },
   module: {
     rules: [
       {
@@ -18,7 +23,7 @@ module.exports = {
           {
             loader: 'file-loader',
             options: {
-              outputPath: 'images',
+              outputPath: 'images/',
               name: '[name]-[sha1:hash:7].[ext]',
             },
           },

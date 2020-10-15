@@ -87,21 +87,21 @@ const ShippingSection = {
               <div class="radio">
                 <input id="pickup-shipping" type="radio" name="method" data-type="Самовывоз" data-summa="0">
                 <label for="pickup-shipping">
-                  <img class="label-icon" src="../../../images/Tilda_Icons_3st_map.svg" width="50px" height="50px" />
+                  <img class="label-icon" src="./images/Tilda_Icons_3st_map.svg" width="50px" height="50px" />
                   Самовывоз (бесплатно)
                 </label>
               </div>
               <div class="radio">
                 <input id="courier-shipping" type="radio" name="method" data-type="Доставка курьером" data-summa="350">
                 <label for="courier-shipping">
-                  <img class="label-icon" src="../../../images/Tilda_Icons_3st_van.svg" width="50px" height="50px" />
+                  <img class="label-icon" src="./images/Tilda_Icons_3st_van.svg" width="50px" height="50px" />
                   Курьерская служба (350 рублей)
                 </label>
               </div>
               <div class="radio">
                 <input id="mail-shipping" type="radio" name="method" data-type="Почтой" data-summa="200">
                 <label for="mail-shipping">
-                  <img class="label-icon" src="../../../images/Tilda_Icons_3st_box.svg" width="50px" height="50px" />
+                  <img class="label-icon" src="./images/Tilda_Icons_3st_box.svg" width="50px" height="50px" />
                   Доставка почтой России (200 рублей)
                 </label>
               </div>

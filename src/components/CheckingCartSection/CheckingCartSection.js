@@ -84,20 +84,20 @@ const CheckingCartSection = {
           const {id, name, price, count, img} = item;
           return `
             <li id=${id} class="cart-item">
-              <div class="item-img"><img src="../../../${img}" height="65px"/></div>
+              <div class="item-img"><img src="./${img}" height="65px"/></div>
               <span class="item-name">${name}</span>
               <span class="item-price">${price} Руб</span>
               <div class="item-count">
                 <div class="btn-update-item" data-action="inc-item">
-                  <img src="../../../images/up-chevron.svg" width="15px" height="15px" />
+                  <img src="./images/up-chevron.svg" width="15px" height="15px" />
                 </div>
                 <div class="item-count-value">${count}</div>
                 <div class="btn-update-item" data-action="dec-item">
-                  <img src="../../../images/down-chevron.svg" width="15px" height="15px" />
+                  <img src="./images/down-chevron.svg" width="15px" height="15px" />
                 </div>
               </div>
               <div class="btn-update-item item-remove" data-action="remove-item">
-                <img src="../../../images/Tilda_Icons_30_system_trash.svg" width="20px" height="20px" />
+                <img src="./images/Tilda_Icons_30_system_trash.svg" width="20px" height="20px" />
               </div>
             </li>
           `;
