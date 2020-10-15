@@ -24,7 +24,7 @@ const ShippingSection = {
   },
 
   isValidData() {
-    return !Object.values(this.shippingData).includes(null);
+    return this.shippingData.isValid;
   },
 
   afterRender() {

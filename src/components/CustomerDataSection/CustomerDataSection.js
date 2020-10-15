@@ -28,7 +28,7 @@ const CustomerDataSection = {
   },
 
   isValidData() {
-    return !Object.values(this.customerData).includes(null);
+    return customerData.isValid;
   },
 
   afterRender() {

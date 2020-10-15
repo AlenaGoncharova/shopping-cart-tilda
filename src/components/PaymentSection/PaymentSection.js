@@ -14,7 +14,7 @@ const PaymentSection = {
   },
 
   isValidData() {
-    return !Object.values(this.paymentData).includes(null);
+    return this.paymentData.isValid;
   },
 
   afterRender() {
