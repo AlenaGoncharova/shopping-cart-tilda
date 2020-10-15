@@ -10,13 +10,17 @@ const ShippingSection = {
   },
 
   generatePreviewData() {
-    const { method, address } = this.shippingData;
-    return (
-      `
-        <p>${method ? method : ''}</p>
-        <p>${address ? address : ''}</p>
-      `
-    );
+    const { method, address, pickupAddress } = this.shippingData;
+    if (method !== null) {
+      return (
+        `
+          <p>${method ? method : ''}</p>
+          <p>${method !== 'Самовывоз' ? (address ? address : '' ) : pickupAddress}</p>
+        `
+      );
+    } else {
+      return 'Выберите способ оплаты';
+    }
   },
 
   isValidData() {
@@ -41,7 +45,7 @@ const ShippingSection = {
         detail: { cost }
       }));
 
-      if (this.shippingData.method === 'pickup') {
+      if (this.shippingData.method === 'Самовывоз') {
         pickupAddress.classList.add('active-address');
         shippingAddress.classList.remove('active-address');
         this.shippingData.isValid = true;
@@ -81,16 +85,16 @@ const ShippingSection = {
           <div class="form-container">
             <form id="shipping-form">
               <div class="radio">
-                <input id="pickup-shipping" type="radio" name="method" data-type="pickup" data-summa="0">
+                <input id="pickup-shipping" type="radio" name="method" data-type="Самовывоз" data-summa="0">
                 <label for="pickup-shipping">Самовывоз (бесплатно)</label>
               </div>
               <div class="radio">
-                <input id="courier-shipping" type="radio" name="method" data-type="courier" data-summa="200">
-                <label for="courier-shipping">В пределах МКАД (200 рублей)</label>
+                <input id="courier-shipping" type="radio" name="method" data-type="Доставка курьером" data-summa="350">
+                <label for="courier-shipping">Курьерская служба (350 рублей)</label>
               </div>
               <div class="radio">
-                <input id="mail-shipping" type="radio" name="method" data-type="mail" data-summa="300">
-                <label for="mail-shipping">Доставка почтой России (300 рублей)</label>
+                <input id="mail-shipping" type="radio" name="method" data-type="Почтой" data-summa="200">
+                <label for="mail-shipping">Доставка почтой России (200 рублей)</label>
               </div>
 
               <div id="address-info-container">

@@ -14,6 +14,10 @@ const CheckingCartSection = {
     return this.cartItems.reduce((sum, { price, count }) => sum += price * count, 0);
   },
 
+  generatePreviewData() {
+    return 'Нажмите для редактирования списка товаров';
+  },
+
   updateItemCount(itemId, count, cart) {
     const item = this.cartItems.find(({ id }) => id === itemId);
     item.count += count;
@@ -65,6 +69,7 @@ const CheckingCartSection = {
     let content = `
       <div class="info-section-container active-info-section" data-section="checkingCart">
         <h3 class="section-header col-25">Детали заказа</h3>
+        <div class="info-section-preview col-75">Нажмите для редактирования списка товаров</div>
         <div class="info-section-content col-75">
           <ul id="cart-items-list">
     `;

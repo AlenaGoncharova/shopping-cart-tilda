@@ -63,6 +63,11 @@ body {
   padding: 0 15px 15px 20px;
 }
 
+.info-section-preview p {
+  margin: 0;
+  padding: 0;
+}
+
 .active-info-section .info-section-content  {
   display: block;
 }
@@ -73,9 +78,4 @@ body {
 
 .section-header {
   margin: 0;
-}
-
-.info-section-preview p {
-  margin: 0;
-  padding: 0;
 }

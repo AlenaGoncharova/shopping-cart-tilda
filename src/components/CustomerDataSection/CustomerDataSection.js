@@ -3,20 +3,28 @@ import './customer-data-section.css';
 const CustomerDataSection = {
   customerData: {
     name: null,
+    surname: null,
+    patronymic: null,
     phone: null,
     email: null,
     isValid: false,
   },
 
   generatePreviewData() {
-    const { name, phone, email } = this.customerData;
-    return (
-      `
-        <p>${name ? name : ''}</p>
-        <p>${phone ? phone : ''}</p>
-        <p>${email ? email : ''}</p>
-      `
-    );
+    if (Object.values(this.customerData).find((value) => value !== null)) {
+      const { surname, name, patronymic, phone, email } = this.customerData;
+      return (
+        `
+          <p>${surname ? surname : ''} ${name ? name : ''} ${patronymic ? patronymic : ''}</p>
+          <p>${phone ? phone : ''}</p>
+          <p>${email ? email : ''}</p>
+        `
+      );
+    } else {
+      return (
+        '<p>Введите данные покупателя</p>'
+      );
+    }
   },
 
   isValidData() {
@@ -67,10 +75,10 @@ const CustomerDataSection = {
             <input type="text" class="form-field" id="input-name" name="name" placeholder=" " required>
 
             <label for="input-surname" class="form-label">Фамилия*</label>
-            <input type="text" class="form-field" id="input-surname" name="name" placeholder=" " required>
+            <input type="text" class="form-field" id="input-surname" name="surname" placeholder=" " required>
 
             <label for="input-patronymic" class="form-label">Отчество</label>
-            <input type="text" class="form-field" id="input-patronymic" name="name" placeholder=" ">
+            <input type="text" class="form-field" id="input-patronymic" name="patronymic" placeholder=" ">
 
             <label for="input-email" class="form-label">Email*</label>
             <div class="form-field">

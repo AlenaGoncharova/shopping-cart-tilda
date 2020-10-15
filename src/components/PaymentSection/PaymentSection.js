@@ -9,7 +9,7 @@ const PaymentSection = {
   generatePreviewData() {
     const { method }= this.paymentData;
     return (
-      `<p>${method ? method : ''}</p>`
+      `<p>${method ? method : 'Выберите способ оплаты'}</p>`
     );
   },
 
@@ -63,14 +63,14 @@ const PaymentSection = {
             <form id="payment-form">
               <div>
                   <div class="radio">
-                    <input id="payment-cash" type="radio" name="method" data-type="cash">
+                    <input id="payment-cash" type="radio" name="method" data-type="Наличные">
                     <label for="payment-cash">
                       <img class="label-icon" src="../../../images/Tilda_Icons_3st_money.svg" width="50px" height="50px" />
                       Наличный расчёт
                     </label>
                   </div>
                   <div class="radio">
-                    <input id="payment-card" type="radio" name="method" data-type="card">
+                    <input id="payment-card" type="radio" name="method" data-type="Картой онлайн">
                     <label for="payment-card">
                       <img class="label-icon" src="../../../images/Tilda_Icons_3st_card.svg" width="50px" height="50px" />
                       Оплата онлайн на сайте
