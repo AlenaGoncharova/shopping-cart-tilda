@@ -60,16 +60,29 @@ const CustomerDataSection = {
         </div>
         <div class="info-section-content col-75">
           <form id="customer-data-form">
-            <label for="input-name" class="control-label">Ваше имя *</label>
-            <input type="text" class="form-control" id="input-name" name="name" placeholder="Ваше имя" required>
+            <label for="input-name" class="form-label">Имя*</label>
+            <input type="text" class="form-field" id="input-name" name="name" placeholder=" " required>
 
-            <label for="input-email" class="control-label">Email *</label>
-            <input type="email" class="form-control" id="input-email" name="email" placeholder="Email" required>
+            <label for="input-surname" class="form-label">Фамилия*</label>
+            <input type="text" class="form-field" id="input-surname" name="name" placeholder=" " required>
 
-            <label for="input-phone" class="control-label">Телефон *</label>
-            <input type="text" class="form-control" id="input-phone" name="phone" placeholder="Телефон" required>
+            <label for="input-patronymic" class="form-label">Отчество</label>
+            <input type="text" class="form-field" id="input-patronymic" name="name" placeholder=" ">
 
-            <input type="submit" class="btn-next-section" value="Продолжить" />
+            <label for="input-email" class="form-label">Email*</label>
+            <div class="form-field">
+              <input type="email" id="input-email" name="email" placeholder=" " required>
+              <span class="form-error">Это поле должно содержать E-Mail в формате example@site.com</span>
+            </div>
+
+            <label for="input-phone" class="form-label">Телефон*</label>
+            <div class="form-field">
+              <input id="input-phone" type="tel" name="phone" placeholder=" " required
+                    pattern="[\+]\d{1}\s[\(]\d{3}[\)]\s\d{3}[\-]\d{2}[\-]\d{2}" minlength="18" maxlength="18" />
+              <span class="form-error">Это поле должно содержать телефон в формате <br/>+7 (123) 456-78-90</span>
+            </div>
+
+            <input type="submit" class="btn-next-section form-field" disabled value="Продолжить" />
           </form>
         </div>
       </div>

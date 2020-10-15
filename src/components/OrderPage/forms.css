@@ -1,14 +1,17 @@
 input[type=text],
-input[type=email] {
+input[type=email],
+input[type=tel] {
   border: 1px solid #00853d;
   box-sizing: border-box;
+  font-family: 'Poiret One', cursive;
   font-size: 1.1rem;
   height: 35px;
   padding: 8px;
 }
 
 input[type=text]::placeholder,
-input[type=email]::placeholder {
+input[type=email]::placeholder,
+input[type=tel] {
   font-family: 'Poiret One', cursive;
 }
 
@@ -28,6 +31,12 @@ input[type="submit"] {
 input[type="submit"]:hover {
   background-color: #00853d;
   border-color: #00853d;
+}
+
+input[type="submit"]:disabled {
+  background-color: rgb(177, 177, 177);
+  border-color:  rgb(177, 177, 177);
+  cursor: auto;
 }
 
 textarea:focus, input:focus, button:hover {
