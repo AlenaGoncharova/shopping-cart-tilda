@@ -25,6 +25,7 @@ const CustomerDataSection = {
 
   afterRender() {
     const form = document.getElementById('customer-data-form');
+    const btnNext = form.querySelector('.btn-next-section');
 
     form.addEventListener('change', (event) => {
       const { target } = event;
@@ -32,19 +33,21 @@ const CustomerDataSection = {
       this.customerData[name] = value;
       console.log(form.checkValidity());
 
-      if (this.customerData.isValid !== this.isValidData()) {
+      if (this.customerData.isValid !== form.checkValidity()) {
+        this.customerData.isValid = form.checkValidity();
+
         let eventType;
-        if (this.isValidData()) {
-          eventType = 'data-is-valid' 
+        if (this.customerData.isValid) {
+          eventType = 'data-is-valid';
+          btnNext.removeAttribute('disabled');
         } else {
           eventType = 'data-is-not-valid'
+          btnNext.setAttribute('disabled', true);
         }
         form.dispatchEvent(new CustomEvent(eventType, {
           bubbles: true,
           detail: { section: 'customerData' }
         }));
-
-        this.customerData.isValid = this.isValidData();
       }
     });
 
@@ -78,8 +81,8 @@ const CustomerDataSection = {
             <label for="input-phone" class="form-label">Телефон*</label>
             <div class="form-field">
               <input id="input-phone" type="tel" name="phone" placeholder=" " required
-                    pattern="[\+]\d{1}\s[\(]\d{3}[\)]\s\d{3}[\-]\d{2}[\-]\d{2}" minlength="18" maxlength="18" />
-              <span class="form-error">Это поле должно содержать телефон в формате <br/>+7 (123) 456-78-90</span>
+                    minlength="16" maxlength="16" />
+              <span class="form-error">Это поле должно содержать телефон в формате <br/>+7(123)456-78-90</span>
             </div>
 
             <input type="submit" class="btn-next-section form-field" disabled value="Продолжить" />
