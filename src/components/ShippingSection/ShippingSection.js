@@ -28,6 +28,7 @@ const ShippingSection = {
     const addressInfo= document.getElementById('address-info-container');
     const pickupAddress = addressInfo.querySelector('#pickup-address');
     const shippingAddress = addressInfo.querySelector('#shipping-address');
+    const btnNext = form.querySelector('.btn-next-section');
 
     form.addEventListener('change', ({ target }) => {
       const value = target.getAttribute('data-type');
@@ -43,25 +44,28 @@ const ShippingSection = {
       if (this.shippingData.method === 'pickup') {
         pickupAddress.classList.add('active-address');
         shippingAddress.classList.remove('active-address');
+        this.shippingData.isValid = true;
       } else {
         pickupAddress.classList.remove('active-address');
         shippingAddress.classList.add('active-address');
-      }
 
-      if (this.shippingData.isValid !== this.isValidData()) {
-        let eventType;
-        if (this.isValidData()) {
-          eventType = 'data-is-valid' 
-        } else {
-          eventType = 'data-is-not-valid'
+        if (this.shippingData.isValid !== form.checkValidity()) {
+          this.shippingData.isValid = form.checkValidity();
         }
-        form.dispatchEvent(new CustomEvent(eventType, {
-          bubbles: true,
-          detail: { section: 'shipping' }
-        }));
-
-        this.shippingData.isValid = this.isValidData();
       }
+
+      let eventType;
+      if (this.shippingData.isValid) {
+        eventType = 'data-is-valid';
+        btnNext.removeAttribute('disabled');
+      } else {
+        eventType = 'data-is-not-valid';
+        btnNext.setAttribute('disabled', true);
+      }
+      form.dispatchEvent(new CustomEvent(eventType, {
+        bubbles: true,
+        detail: { section: 'shipping' }
+      }));
     });
 
     form.addEventListener('submit', (e) => e.preventDefault());
