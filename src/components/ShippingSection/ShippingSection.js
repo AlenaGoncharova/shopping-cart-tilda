@@ -1,7 +1,10 @@
+import './shipping-section.css';
+
 const ShippingSection = {
   shippingData: {
     method: null,
     address: null,
+    pickupAddress: 'Москва, Красная площадь 3.',
     cost: null,
     isValid: false,
   },
@@ -22,24 +25,27 @@ const ShippingSection = {
 
   afterRender() {
     const form = document.getElementById('shipping-form');
+    const addressInfo= document.getElementById('address-info-container');
+    const pickupAddress = addressInfo.querySelector('#pickup-address');
+    const shippingAddress = addressInfo.querySelector('#shipping-address');
 
     form.addEventListener('change', ({ target }) => {
-      if (target.type !== 'radio') {
-        const { name, value } = target;
-        this.shippingData[name] = value;
-      } else {
-        const { name, checked } = target;
-        if (checked) {
-          const value = target.getAttribute('data-type');
-          this.shippingData[name] = value;
-          const cost = Number(target.getAttribute('data-summa'));
-          this.shippingData.cost = cost;
+      const value = target.getAttribute('data-type');
+      this.shippingData.method = value;
+      const cost = Number(target.getAttribute('data-summa'));
+      this.shippingData.cost = cost;
 
-          form.dispatchEvent(new CustomEvent("shipping-method-changed", {
-            bubbles: true,
-            detail: { cost }
-          }));
-        }
+      form.dispatchEvent(new CustomEvent("shipping-method-changed", {
+        bubbles: true,
+        detail: { cost }
+      }));
+
+      if (this.shippingData.method === 'pickup') {
+        pickupAddress.classList.add('active-address');
+        shippingAddress.classList.remove('active-address');
+      } else {
+        pickupAddress.classList.remove('active-address');
+        shippingAddress.classList.add('active-address');
       }
 
       if (this.shippingData.isValid !== this.isValidData()) {
@@ -61,7 +67,7 @@ const ShippingSection = {
     form.addEventListener('submit', (e) => e.preventDefault());
   },
 
-  render: () => {
+  render() {
     return `
       <div class="info-section-container" data-section="shipping">
         <h3 class="section-header col-25">Доставка</h3>
@@ -71,22 +77,36 @@ const ShippingSection = {
           <div class="form-container">
             <form id="shipping-form">
               <div class="radio">
-                <input id="pickup-shipping" type="radio" name="method" data-type="Самовывоз" data-summa="0">
+                <input id="pickup-shipping" type="radio" name="method" data-type="pickup" data-summa="0">
                 <label for="pickup-shipping">Самовывоз (бесплатно)</label>
               </div>
               <div class="radio">
-                <input id="courier-shipping" type="radio" name="method" data-type="В пределах МКАД" data-summa="200">
+                <input id="courier-shipping" type="radio" name="method" data-type="courier" data-summa="200">
                 <label for="courier-shipping">В пределах МКАД (200 рублей)</label>
               </div>
               <div class="radio">
-                <input id="mail-shipping" type="radio" name="method" data-type="Почта России" data-summa="300">
+                <input id="mail-shipping" type="radio" name="method" data-type="mail" data-summa="300">
                 <label for="mail-shipping">Доставка почтой России (300 рублей)</label>
               </div>
-              <div class="form-group">
-                <label for="input-address" class="control-label">Адрес доставки</label>
-                <textarea class="form-control" id="input-address" name="address" placeholder="Адрес доставки" row="3"></textarea>
+
+              <div id="address-info-container">
+                <div id="pickup-address" class="address-info">
+                  <div>Адрес для самовывоза:</div>
+                  <div>${this.shippingData.pickupAddress}</div>
+                </div>
+
+                <div id="shipping-address" class="address-info">
+                    <label for="input-city" class="form-label">Город*</label>
+                    <input id="input-city" type="text" class="form-field" required name="city" placeholder=" ">
+      
+                    <label for="input-address" class="form-label">Адрес*</label>
+                    <input id="input-address" type="text" class="form-field" required name="address" placeholder=" ">
+                </div>
+  
+                <div id="shipping-btn-next-section">
+                  <input type="submit" class="btn-next-section" value="Продолжить" disabled />
+                </div>
               </div>
-              <input type="submit" class="btn-next-section" value="Продолжить" />
             </form>
           </div>
         </div>
