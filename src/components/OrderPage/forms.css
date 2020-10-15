@@ -1,7 +1,7 @@
 input[type=text],
 input[type=email],
 input[type=tel] {
-  border: 1px solid #00853d;
+  border: 1px solid #005b85;
   box-sizing: border-box;
   font-family: 'Poiret One', cursive;
   font-size: 1.1rem;
@@ -29,8 +29,8 @@ input[type="submit"] {
 }
 
 input[type="submit"]:hover {
-  background-color: #00853d;
-  border-color: #00853d;
+  background-color: #005b85;
+  border-color: #005b85;
 }
 
 input[type="submit"]:disabled {

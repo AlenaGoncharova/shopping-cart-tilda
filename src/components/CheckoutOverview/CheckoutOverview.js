@@ -8,15 +8,15 @@ const CheckoutOverview = {
           <tbody>
             <tr>
               <th><span>Стоимость заказа</span></th>
-              <td><span>${orderСost}</span></td>
+              <td><span id="order-cost">${orderСost} Руб</span></td>
             </tr>
             <tr>
               <th><span>Доставка</span></th>
-              <td><span>${shippingCost ? shippingCost : 'БЕСПЛАТНО'}</span></td>
+              <td><span id="shipping-cost">${shippingCost ? shippingCost + ' Руб' : 'БЕСПЛАТНО'}</span></td>
             </tr>
             <tr>
               <th><span>Итого к оплате:</span></th>
-              <td><span>${orderСost + shippingCost}</span></td>
+              <td><span id="total-cost">${orderСost + shippingCost} Руб</span></td>
             </tr>
           </tbody>
         </table>

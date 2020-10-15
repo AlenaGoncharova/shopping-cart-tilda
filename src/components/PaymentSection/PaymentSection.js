@@ -77,7 +77,7 @@ const PaymentSection = {
                     </label>
                   </div>
               </div>
-              <input type="submit" class="btn-next-section" disabled value="Продолжить" />
+              <input type="submit" class="btn-next-section" disabled value="Сохранить" />
             </form>
           </div>
         </div>

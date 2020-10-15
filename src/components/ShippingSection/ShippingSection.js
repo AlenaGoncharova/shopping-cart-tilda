@@ -121,7 +121,7 @@ const ShippingSection = {
                 </div>
   
                 <div id="shipping-btn-next-section">
-                  <input type="submit" class="btn-next-section" value="Продолжить" disabled />
+                  <input type="submit" class="btn-next-section" value="Сохранить" disabled />
                 </div>
               </div>
             </form>

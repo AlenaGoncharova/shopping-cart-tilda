@@ -19,10 +19,6 @@
   grid-column: span 2;
 }
 
-#customer-data-form .form-label {
-  align-self: center;
-}
-
 #customer-data-form .form-error {
 	color: red;
 	text-align: right;

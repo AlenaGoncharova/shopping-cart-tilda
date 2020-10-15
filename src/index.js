@@ -41,4 +41,3 @@ const cartItems = [
 
 setCartItems(cartItems);
 OrderPage.render();
-OrderPage.afterRender();

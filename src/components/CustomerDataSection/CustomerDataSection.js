@@ -93,7 +93,7 @@ const CustomerDataSection = {
               <span class="form-error">Это поле должно содержать телефон в формате <br/>+7(123)456-78-90</span>
             </div>
 
-            <input type="submit" class="btn-next-section form-field" disabled value="Продолжить" />
+            <input type="submit" class="btn-next-section form-field" disabled value="Сохранить" />
           </form>
         </div>
       </div>

@@ -86,7 +86,7 @@ const CheckingCartSection = {
             <li id=${id} class="cart-item">
               <div class="item-img"><img src="../../../${img}" height="65px"/></div>
               <span class="item-name">${name}</span>
-              <span class="item-price">${price}</span>
+              <span class="item-price">${price} Руб</span>
               <div class="item-count">
                 <div class="btn-update-item" data-action="inc-item">
                   <img src="../../../images/up-chevron.svg" width="15px" height="15px" />
