@@ -19,6 +19,7 @@ const PaymentSection = {
 
   afterRender() {
     const form = document.getElementById('payment-form');
+    const btnNext = form.querySelector('.btn-next-section');
 
     form.addEventListener('change', ({ target }) => {
       const { name, checked } = target;
@@ -28,12 +29,16 @@ const PaymentSection = {
       }
       console.log(form.checkValidity());
 
-      if (this.paymentData.isValid !== this.isValidData()) {
+      if (this.paymentData.isValid !== form.checkValidity()) {
+        this.paymentData.isValid = form.checkValidity();
+
         let eventType;
-        if (this.isValidData()) {
-          eventType = 'data-is-valid' 
+        if (this.paymentData.isValid) {
+          eventType = 'data-is-valid';
+          btnNext.removeAttribute('disabled');
         } else {
-          eventType = 'data-is-not-valid'
+          eventType = 'data-is-not-valid';
+          btnNext.setAttribute('disabled', true);
         }
         form.dispatchEvent(new CustomEvent(eventType, {
           bubbles: true,
@@ -72,7 +77,7 @@ const PaymentSection = {
                     </label>
                   </div>
               </div>
-              <input type="submit" class="btn-next-section" value="Продолжить" />
+              <input type="submit" class="btn-next-section" disabled value="Продолжить" />
             </form>
           </div>
         </div>
