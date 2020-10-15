@@ -14,6 +14,10 @@ const CheckingCartSection = {
     return this.cartItems.reduce((sum, { price, count }) => sum += price * count, 0);
   },
 
+  calcTotalCount() {
+    return this.cartItems.reduce((sum, {  count }) => sum += count, 0);
+  },
+
   generatePreviewData() {
     return 'Нажмите для редактирования списка товаров';
   },

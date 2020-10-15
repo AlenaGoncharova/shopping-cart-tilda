@@ -79,3 +79,9 @@ body {
 .section-header {
   margin: 0;
 }
+
+#empty-cart {
+  width: 100%;
+  padding: 150px;
+  font-size: 1.5em;
+}

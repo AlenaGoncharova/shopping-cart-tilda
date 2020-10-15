@@ -86,7 +86,13 @@ const OrderPage = {
 
     const cart = document.querySelector('[data-section="checkingCart"]');
     cart.addEventListener("cart-items-changed", function(event) {
-      sidebarContainer.innerHTML = CheckoutOverview.render(event.detail.orderSum, ShippingSection.shippingData.cost);
+      const totalCount = CheckingCartSection.calcTotalCount();
+      if (totalCount > 0) {
+        sidebarContainer.innerHTML = CheckoutOverview.render(event.detail.orderSum, ShippingSection.shippingData.cost);
+      } else {
+        const container = document.querySelector('.container');
+        container.innerHTML = '<div id="empty-cart"><div>Корзина пуста :(</div><div>Но в нашем каталоге вы найдете все, что нужно!</div></div>';
+      }
     });
 
     const forms = document.querySelectorAll('form');
