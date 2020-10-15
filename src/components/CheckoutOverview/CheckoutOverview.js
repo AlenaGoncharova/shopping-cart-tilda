@@ -1,3 +1,5 @@
+import './checkout-overview.css';
+
 const CheckoutOverview = {
   render(orderСost, shippingCost) {
     return `
@@ -6,7 +8,7 @@ const CheckoutOverview = {
           <tbody>
             <tr>
               <th><span>Стоимость заказа</span></th>
-              <td>${orderСost}</td>
+              <td><span>${orderСost}</span></td>
             </tr>
             <tr>
               <th><span>Доставка</span></th>
@@ -14,11 +16,11 @@ const CheckoutOverview = {
             </tr>
             <tr>
               <th><span>Итого к оплате:</span></th>
-              <td>${orderСost + shippingCost}</td>
+              <td><span>${orderСost + shippingCost}</span></td>
             </tr>
           </tbody>
         </table>
-        <button id="btn-checkout" type="submit" disabled>Оформить заказ</button>
+        <input id="btn-checkout" type="submit" disabled value="Оформить заказ" />
       </div>
     `;
   },

@@ -5,6 +5,7 @@ import PaymentSection from '../PaymentSection';
 import CheckoutOverview from '../CheckoutOverview';
 
 import './order-page.css';
+import './forms.css'
 
 const OrderPage = {
   afterRender: () => {

@@ -1,3 +1,5 @@
+import './payment-section.css';
+
 const PaymentSection = {
   paymentData: {
     method: null,
@@ -24,6 +26,7 @@ const PaymentSection = {
         const value = target.getAttribute('data-type');
         this.paymentData[name] = value;
       }
+      console.log(form.checkValidity());
 
       if (this.paymentData.isValid !== this.isValidData()) {
         let eventType;
@@ -47,23 +50,29 @@ const PaymentSection = {
   render: () => {
     return `
       <div class="info-section-container" data-section="payment">
-        <h3>Оплата</h3>
-        <div class="info-section-preview">Способ оплаты не выбран</div>
-        <div class="info-section-content">
+        <h3 class="section-header col-25">Оплата</h3>
+        <div class="info-section-preview col-75">Способ оплаты не выбран</div>
+        <div class="info-section-content col-75">
+          <span class="control-label">Способ оплаты</span>
           <div class="form-container">
             <form id="payment-form">
-              <div class="form-group">
-                <label class="control-label">Способ оплаты</label>
-                <div>
-                    <div class="radio">
-                        <label><input type="radio" name="method" data-type="Наличными">Наличными</label>
-                    </div>
-                    <div class="radio">
-                        <label><input type="radio" name="method" data-type="Картой">Картой</label>
-                    </div>
-                </div>
+              <div>
+                  <div class="radio">
+                    <input id="payment-cash" type="radio" name="method" data-type="cash">
+                    <label for="payment-cash">
+                      <img class="label-icon" src="../../../images/Tilda_Icons_3st_money.svg" width="50px" height="50px" />
+                      Наличный расчёт
+                    </label>
+                  </div>
+                  <div class="radio">
+                    <input id="payment-card" type="radio" name="method" data-type="card">
+                    <label for="payment-card">
+                      <img class="label-icon" src="../../../images/Tilda_Icons_3st_card.svg" width="50px" height="50px" />
+                      Оплата онлайн на сайте
+                    </label>
+                  </div>
               </div>
-              <button type="submit" class="btn-next-section">Продолжить</button>
+              <input type="submit" class="btn-next-section" value="Продолжить" />
             </form>
           </div>
         </div>

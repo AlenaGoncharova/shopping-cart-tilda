@@ -1,3 +1,5 @@
+import './customer-data-section.css';
+
 const CustomerDataSection = {
   customerData: {
     name: null,
@@ -28,6 +30,7 @@ const CustomerDataSection = {
       const { target } = event;
       const { name, value } = target;
       this.customerData[name] = value;
+      console.log(form.checkValidity());
 
       if (this.customerData.isValid !== this.isValidData()) {
         let eventType;
@@ -51,25 +54,22 @@ const CustomerDataSection = {
   render() {
     return `
       <div class="info-section-container" data-section="customerData">
-        <h3>Данные покупателя</h3>
-        <div class="info-section-preview">
+        <h3 class="section-header col-25">Данные покупателя</h3>
+        <div class="info-section-preview col-75">
           Введите данные покупателя
         </div>
-        <div class="info-section-content">
+        <div class="info-section-content col-75">
           <form id="customer-data-form">
-            <div class="form-group">
-                <label for="input-name" class="control-label">Ваше имя *</label>
-                <input type="text" class="form-control" id="input-name" name="name" placeholder="Ваше имя">
-            </div>
-            <div class="form-group">
-                <label for="input-email" class="control-label">Email *</label>
-                <input type="email" class="form-control" id="input-email" name="email" placeholder="Email">
-            </div>
-            <div class="form-group">
-                <label for="input-phone" class="control-label">Телефон *</label>
-                <input type="text" class="form-control" id="input-phone" name="phone" placeholder="Телефон">
-            </div>
-            <button type="submit" class="btn-next-section">Продолжить</button>
+            <label for="input-name" class="control-label">Ваше имя *</label>
+            <input type="text" class="form-control" id="input-name" name="name" placeholder="Ваше имя" required>
+
+            <label for="input-email" class="control-label">Email *</label>
+            <input type="email" class="form-control" id="input-email" name="email" placeholder="Email" required>
+
+            <label for="input-phone" class="control-label">Телефон *</label>
+            <input type="text" class="form-control" id="input-phone" name="phone" placeholder="Телефон" required>
+
+            <input type="submit" class="btn-next-section" value="Продолжить" />
           </form>
         </div>
       </div>

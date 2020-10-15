@@ -1,5 +1,7 @@
 import { getCartItems } from '../../localStorage';
 
+import './checking-cart-section.css';
+
 const CheckingCartSection = {
   cartItems: null,
   orderSum: null,
@@ -20,7 +22,7 @@ const CheckingCartSection = {
       const el = document.querySelector(`#cart-items-list [id="${Number(itemId)}"]`);
       el.remove();
     } else {
-      const el = document.querySelector(`#cart-items-list [id="${Number(itemId)}"] span`);
+      const el = document.querySelector(`#cart-items-list [id="${Number(itemId)}"] .item-count-value`);
       el.innerText = item.count;
     }
 
@@ -33,28 +35,26 @@ const CheckingCartSection = {
 
   afterRender() {
     const cart = document.getElementById('cart-items-list');
-    cart.addEventListener('click', ({ target }) => {
-      console.log(target);
-      const itemId = target.closest('tr').getAttribute('id');
-      const actionType = target.getAttribute('data-action');
-      switch (actionType) {
-        case 'inc-item':
-          this.updateItemCount(itemId, 1, cart);
-          console.log('inc-item');
-          break;
-        case 'dec-item':
-          this.updateItemCount(itemId, -1, cart);
-          console.log('dec-item');
-          break;
-        case 'remove-item':
-          const item = this.cartItems.find(({ id }) => id === itemId);
-          this.updateItemCount(itemId, -item.count, cart);
-          console.log('remove-item');
-          break;
-        default:
-          break;
-        // const newListItem = this.render();
-      }
+    const btnUpdateItem = document.querySelectorAll('.btn-update-item');
+    btnUpdateItem.forEach((btn) => {
+      btn.addEventListener('click', ({ target }) => {
+        const itemId = target.closest('li').getAttribute('id');
+        const actionType = btn.getAttribute('data-action');
+        switch (actionType) {
+          case 'inc-item':
+            this.updateItemCount(itemId, 1, cart);
+            break;
+          case 'dec-item':
+            this.updateItemCount(itemId, -1, cart);
+            break;
+          case 'remove-item':
+            const item = this.cartItems.find(({ id }) => id === itemId);
+            this.updateItemCount(itemId, -item.count, cart);
+            break;
+          default:
+            break;
+        }
+      });
     });
   },
 
@@ -64,36 +64,45 @@ const CheckingCartSection = {
 
     let content = `
       <div class="info-section-container active-info-section" data-section="checkingCart">
-        <h3>Детали заказа</h3>
-        <div class="info-section-content">
-          Корзина
-          <div id="cart-items-list">
+        <h3 class="col-25">Детали заказа</h3>
+        <div class="info-section-content col-75">
+          <ul id="cart-items-list">
     `;
     if (this.cartItems !== null){
       content += `
-        <table>
-          <tr>
-            <th>Наименование</th>
-            <th>Цена</th>
-            <th>Кол-во</th>
-          </tr>
-      `;
-      this.cartItems.map((item) => {
-        const {id, name, price, count} = item;
-        content += `
-          <tr id=${id} class="cart-item">
-            <td>${name}</td>
-            <td>${price}</td>
-            <td><span>${count}</span> <button data-action="inc-item">+</button> <button data-action="dec-item">-</button> <button data-action="remove-item">Удалить</button></td>
-          </tr>
-        `;
-      });
-      content += '</table>';
+      ${
+        this.cartItems.map((item) => {
+          const {id, name, price, count, img} = item;
+          return `
+            <li id=${id} class="cart-item">
+              <div class="item-img"><img src="../../../${img}" height="65px"/></div>
+              <span class="item-name">${name}</span>
+              <span class="item-price">${price}</span>
+              <div class="item-count">
+                <div class="btn-update-item" data-action="inc-item">
+                  <img src="../../../images/up-chevron.svg" width="15px" height="15px" />
+                </div>
+                <div class="item-count-value">${count}</div>
+                <div class="btn-update-item" data-action="dec-item">
+                  <img src="../../../images/down-chevron.svg" width="15px" height="15px" />
+                </div>
+              </div>
+              <div class="btn-update-item item-remove" data-action="remove-item">
+                <img src="../../../images/Tilda_Icons_30_system_trash.svg" width="20px" height="20px" />
+              </div>
+            </li>
+          `;
+        })
+        .join('\n')
+      }`;
     } else {
       content = 'В корзине пусто!';
     }
     content += `
-          <button type="submit" class="btn-next-section">Продолжить</button>
+          </ul>
+          <div id="cart-btn-next-section">
+            <input type="submit" class="btn-next-section" value="Продолжить" />
+          </div>
         </div>
       </div>
     </div>`

@@ -64,32 +64,29 @@ const ShippingSection = {
   render: () => {
     return `
       <div class="info-section-container" data-section="shipping">
-        <h3>Доставка</h3>
-        <div class="info-section-preview">Выберите способ доставки</div>
-        <div class="info-section-content">
+        <h3 class="section-header col-25">Доставка</h3>
+        <div class="info-section-preview col-75">Выберите способ доставки</div>
+        <div class="info-section-content col-75">
+          <span class="control-label">Способ доставки</span>
           <div class="form-container">
             <form id="shipping-form">
-              <div class="form-group">
-                <label class="control-label">Способ доставки</label>
-                <div>
-                    <div class="radio">
-                        <label><input type="radio" name="method" data-type="Самовывоз" data-summa="0">Самовывоз (бесплатно)</label>
-                    </div>
-                    <div class="radio">
-                        <label><input type="radio" name="method" data-type="В пределах МКАД" data-summa="200">В пределах МКАД (200 рублей)</label>
-                    </div>
-                    <div class="radio">
-                        <label><input type="radio" name="method" data-type="Почта России" data-summa="300">Доставка почтой России (300 рублей)</label>
-                    </div>
-                </div>
+              <div class="radio">
+                <input id="pickup-shipping" type="radio" name="method" data-type="Самовывоз" data-summa="0">
+                <label for="pickup-shipping">Самовывоз (бесплатно)</label>
+              </div>
+              <div class="radio">
+                <input id="courier-shipping" type="radio" name="method" data-type="В пределах МКАД" data-summa="200">
+                <label for="courier-shipping">В пределах МКАД (200 рублей)</label>
+              </div>
+              <div class="radio">
+                <input id="mail-shipping" type="radio" name="method" data-type="Почта России" data-summa="300">
+                <label for="mail-shipping">Доставка почтой России (300 рублей)</label>
               </div>
               <div class="form-group">
                 <label for="input-address" class="control-label">Адрес доставки</label>
-                <div>
-                    <textarea class="form-control" id="input-address" name="address" placeholder="Адрес доставки" row="3"></textarea>
-                </div>
+                <textarea class="form-control" id="input-address" name="address" placeholder="Адрес доставки" row="3"></textarea>
               </div>
-              <button type="submit" class="btn-next-section">Продолжить</button>
+              <input type="submit" class="btn-next-section" value="Продолжить" />
             </form>
           </div>
         </div>
