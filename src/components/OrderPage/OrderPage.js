@@ -32,16 +32,17 @@ const OrderPage = {
       }
     ];
 
-    const infoSectionContainers = document.querySelectorAll('.info-section-container');
-    let activeInfoSection = document.querySelector('.active-info-section');
-    const btnNextSection = document.querySelectorAll('.btn-next-section');
-
     const mappingSection = {
       checkingCart: CheckingCartSection,
       customerData: CustomerDataSection,
       shipping: ShippingSection,
       payment: PaymentSection,
     };
+
+    const infoSectionContainers = document.querySelectorAll('.info-section-container');
+    const btnNextSection = document.querySelectorAll('.btn-next-section');
+    const shippingForm = document.querySelector('[data-section="shipping"]');
+    const sidebarContainer = document.getElementById('sidebar-container');
 
     function changeActiveSection(currentActiveSection, newActiveSection) {
       const sectionName = currentActiveSection.getAttribute('data-section');
@@ -71,8 +72,6 @@ const OrderPage = {
       btn.addEventListener('click', (event) => {
         const currentSection = event.target.closest('.active-info-section');
         const currentSectionName = currentSection.getAttribute('data-section');
-        const currentStep = checkoutSteps.find(({ sectionName }) => sectionName === currentSectionName);
-        // currentStep.isValid = true;
 
         const nextStep = checkoutSteps.find(({ sectionName, isValid, isActive }) => {
           return (!isValid && !isActive && sectionName !== currentSectionName);
@@ -88,41 +87,23 @@ const OrderPage = {
       });
     });
 
-    const shippingForm = document.querySelector('[data-section="shipping"]');
-    const sidebarContainer = document.getElementById('sidebar-container');
-    const shippingCost = document.getElementById('shipping-cost');
-    const orderCost = document.getElementById('order-cost');
-    const totalCost = document.getElementById('total-cost');
-    // const btnCheckout = document.getElementById('btn-checkout');
     shippingForm.addEventListener("shipping-method-changed", function(event) {
       sidebarContainer.innerHTML = CheckoutOverview.render(CheckingCartSection.calcOrderSum(), event.detail.cost);
-      const btnCheckout = document.getElementById('btn-checkout');
-      btnCheckout.addEventListener('submit', () => {
-        const container = document.querySelector('.container');
-        container.innerHTML = '<div id="empty-cart"><div>Вы будете перенаправлены в платежный шлюз.</div><div>Спасибо за заказ!</div></div>';
-      })
-      // shippingCost.innerText = event.detail.cost ? `${event.detail.cost} Руб` : 'БЕСПЛАТНО';
-      // totalCost.innerText = `${CheckingCartSection.calcOrderSum() + event.detail.cost} Руб`;
     });
 
     const cart = document.querySelector('[data-section="checkingCart"]');
     cart.addEventListener("cart-items-changed", function(event) {
       const totalCount = CheckingCartSection.calcTotalCount();
       if (totalCount > 0) {
-        // orderCost.innerText = `${event.detail.orderSum} Руб`;
-        // totalCost.innerText = `${event.detail.orderSum + ShippingSection.shippingData.cost} Руб`;
         sidebarContainer.innerHTML = CheckoutOverview.render(event.detail.orderSum, ShippingSection.shippingData.cost);
-        const btnCheckout = document.getElementById('btn-checkout');
-        btnCheckout.addEventListener('submit', () => {
-          const container = document.querySelector('.container');
-          container.innerHTML = '<div id="empty-cart"><div>Вы будете перенаправлены в платежный шлюз.</div><div>Спасибо за заказ!</div></div>';
-        });
       } else {
         const container = document.querySelector('.container');
-        container.innerHTML = '<div id="empty-cart"><div>Корзина пуста :(</div><div>Но в нашем каталоге вы найдете все, что нужно!</div></div>';
+        container.innerHTML = `
+          <div id="empty-cart"><div>Корзина пуста :(</div>
+          <div>Но в нашем каталоге вы найдете все, что нужно!</div></div>
+        `;
       }
     });
-
 
     const forms = document.querySelectorAll('form');
     forms.forEach((form) => {
